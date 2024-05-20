@@ -105,7 +105,7 @@ const Home = () => {
             style={{
               border: "1px solid black",
               marginTop: "20px",
-              width: "100%",
+              width: "50%",
             }}
           />
         )}
