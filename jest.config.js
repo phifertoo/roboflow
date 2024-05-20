@@ -8,6 +8,7 @@ module.exports = {
   transform: {
     "^.+\\.(ts|tsx|js|jsx)?$": "babel-jest", // This line ensures Babel is used
   },
+  setupFilesAfterEnv: ["./setupTests.js"],
   transformIgnorePatterns: ["<rootDir>/node_modules/"],
   testPathIgnorePatterns: ["<rootDir>/.next/", "<rootDir>/node_modules/"],
 };
