@@ -1,7 +1,9 @@
+// LoadingSpinner.js
 import { Spinner } from "@chakra-ui/react";
 
 const LoadingSpinner = () => (
   <Spinner
+    data-testid="loading-spinner"
     size="xl"
     thickness="4px"
     speed="0.65s"

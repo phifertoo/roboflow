@@ -13,8 +13,9 @@
     "typeRoots": ["./node_modules/@types", "./types"],
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true
+    "jsx": "react-jsx", // Ensures JSX is handled correctly
+    "incremental": true,
+    "types": ["jest"] // Adding Jest types
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
