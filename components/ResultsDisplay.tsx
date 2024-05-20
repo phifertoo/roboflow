@@ -25,7 +25,11 @@ const ResultsDisplay = ({ results }) => {
     });
   };
 
-  return results ? <VStack>{renderResults(results)}</VStack> : null;
+  return results.length > 0 ? (
+    <VStack>{renderResults(results)}</VStack>
+  ) : (
+    "No fractured detected"
+  );
 };
 
 export default ResultsDisplay;
