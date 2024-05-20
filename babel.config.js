@@ -1,8 +1,10 @@
-// babel.config.js
 module.exports = {
   presets: [
-    ['@babel/preset-env', { targets: { node: 'current' }, modules: 'commonjs' }],
-    '@babel/preset-react',
-    '@babel/preset-typescript',
+    "@babel/preset-env",
+    "@babel/preset-react",
+    "@babel/preset-typescript",
+  ],
+  plugins: [
+    // any Babel plugins
   ],
 };
