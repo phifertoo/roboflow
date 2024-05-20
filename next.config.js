@@ -1,10 +1,9 @@
 // next.config.js
 module.exports = {
   webpack: (config, { isServer }) => {
-    // This condition ensures the rule is only applied in production
     if (!isServer) {
       config.module.rules.push({
-        test: /\.(test.js|test.jsx)$/,
+        test: /\.(test.js|test.jsx|test.ts|test.tsx)$/,
         loader: "ignore-loader",
       });
     }
