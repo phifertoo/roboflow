@@ -1,7 +1,7 @@
 // jest.config.js
 module.exports = {
   preset: "ts-jest",
-  testEnvironment: "jest-environment-jsdom", // Specify the test environment
+  testEnvironment: "jest-environment-jsdom", // Specify the test environment,
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1",
   },
