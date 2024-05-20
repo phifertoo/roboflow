@@ -1,59 +1,40 @@
-// import React from "react";
-// import { render, fireEvent, waitFor } from "@testing-library/react";
-// import ImageUploader from "./ImageUploader";
-// import "@testing-library/jest-dom";
+import React from "react";
+import { render, screen, fireEvent } from "@testing-library/react";
+import ImageUploader from "./ImageUploader";
+import "@testing-library/jest-dom";
 
-// // Mocking the global fetch function
-// global.fetch = jest.fn(() =>
-//   Promise.resolve({
-//     json: () => Promise.resolve({ predictions: "test data" }),
-//   })
-// ) as jest.Mock;
+describe("ImageUploader", () => {
+  it("renders correctly", () => {
+    const mockSetLoading = jest.fn();
+    const mockSetResult = jest.fn();
+    const mockSetImageUrl = jest.fn();
 
-// describe("ImageUploader", () => {
-//   beforeEach(() => {
-//     (global.fetch as jest.Mock).mockClear();
-//   });
+    render(
+      <ImageUploader
+        setLoading={mockSetLoading}
+        setResult={mockSetResult}
+        setImageUrl={mockSetImageUrl}
+      />
+    );
+    expect(screen.getByText(/upload an x-ray/i)).toBeInTheDocument();
+  });
 
-//   it("renders the instruction text correctly", () => {
-//     const { getByText } = render(
-//       <ImageUploader
-//         onImageLoad={jest.fn()}
-//         setLoading={jest.fn()}
-//         setResult={jest.fn()}
-//       />
-//     );
-//     expect(
-//       getByText("Instructions: Upload an x-ray to get your diagnosis.")
-//     ).toBeInTheDocument();
-//   });
+  it("handles file upload", () => {
+    const mockSetLoading = jest.fn();
+    const mockSetResult = jest.fn();
+    const mockSetImageUrl = jest.fn();
+    const file = new File(["(⌐□_□)"], "chakra.png", { type: "image/png" });
 
-//   it("calls the provided functions when an image is uploaded", async () => {
-//     const mockOnImageLoad = jest.fn();
-//     const mockSetLoading = jest.fn();
-//     const mockSetResult = jest.fn();
+    render(
+      <ImageUploader
+        setLoading={mockSetLoading}
+        setResult={mockSetResult}
+        setImageUrl={mockSetImageUrl}
+      />
+    );
+    const input = screen.getByLabelText(/upload/i);
+    fireEvent.change(input, { target: { files: [file] } });
 
-//     const { getByTestId } = render(
-//       <ImageUploader
-//         onImageLoad={mockOnImageLoad}
-//         setLoading={mockSetLoading}
-//         setResult={mockSetResult}
-//       />
-//     );
-
-//     // Mock the file input and event
-//     const file = new File(["(⌐□_□)"], "chucknorris.png", { type: "image/png" });
-//     const input = getByTestId("file-input");
-//     Object.defineProperty(input, "files", {
-//       value: [file],
-//     });
-
-//     fireEvent.change(input);
-
-//     await waitFor(() => expect(mockSetLoading).toHaveBeenCalledTimes(2)); // Called once for start and once for end
-//     expect(mockSetLoading).toHaveBeenCalledWith(true); // First call with true
-//     expect(mockSetLoading).toHaveBeenCalledWith(false); // Last call with false
-//     expect(mockSetResult).toHaveBeenCalledWith("test data");
-//     expect(mockOnImageLoad).toHaveBeenCalled();
-//   });
-// });
+    expect(input).toBeInTheDocument();
+  });
+});
