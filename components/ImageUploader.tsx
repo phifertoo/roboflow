@@ -34,14 +34,18 @@ const ImageUploader = ({ setLoading, setResult, setImageUrl }) => {
   };
 
   return (
-    <VStack>
-      <Text>Instructions: Upload an x-ray to get your diagnosis.</Text>
+    <VStack align="center" spacing={4}>
+      {" "}
+      <Text fontSize="xl">
+        Instructions: Upload an x-ray to get your diagnosis.
+      </Text>
       <Input
         type="file"
         onChange={handleImageChange}
         accept="image/*"
         p={2}
         mb={4}
+        height="50px"
       />
     </VStack>
   );
