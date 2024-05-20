@@ -3,8 +3,8 @@ module.exports = {
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.module.rules.push({
-        test: /\.(test.js|test.jsx|test.ts|test.tsx)$/,
-        loader: "ignore-loader",
+        test: /\.(test|spec)\.(js|jsx|ts|tsx)$/,
+        use: "ignore-loader",
       });
     }
     return config;
