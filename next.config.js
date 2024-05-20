@@ -1,5 +1,6 @@
-// next.config.js
-module.exports = {
+const withTM = require("next-transpile-modules")([]);
+
+module.exports = withTM({
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.module.rules.push({
@@ -9,4 +10,4 @@ module.exports = {
     }
     return config;
   },
-};
+});
