@@ -9,6 +9,8 @@ import {
   Link,
   Heading,
   Container,
+  Spinner,
+  Divider,
 } from "@chakra-ui/react";
 
 const sampleImages = [
@@ -42,10 +44,10 @@ const renderResults = (detections) => {
 };
 
 const Home: React.FC = () => {
-  const [image, setImage] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [result, setResult] = useState<any>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [loading, setLoading] = useState(false); // Loading state
 
   useEffect(() => {
     if (imageUrl && result && canvasRef.current) {
@@ -119,22 +121,28 @@ const Home: React.FC = () => {
   ) => {
     if (event.target.files?.length) {
       const file = event.target.files[0]; // Get the uploaded file
-      setImage(file); // Update the state to hold the selected file
       const fileReader = new FileReader();
 
       fileReader.onload = async (e) => {
         if (e.target?.result) {
+          setLoading(true); // Start loading
           const formData = new FormData();
           formData.append("file", file); // Append the file object directly
 
-          const response = await fetch("/api/detect", {
-            method: "POST",
-            body: formData,
-          });
+          try {
+            const response = await fetch("/api/detect", {
+              method: "POST",
+              body: formData,
+            });
 
-          const data = await response.json();
-          setResult(data.predictions); // Set the detection results in state
-          setImageUrl(e.target.result as string); // Update the imageUrl to display the uploaded image
+            const data = await response.json();
+            setResult(data.predictions);
+            setImageUrl(e.target.result as string);
+          } catch (error) {
+            console.error("Error processing image:", error);
+          } finally {
+            setLoading(false); // End loading
+          }
         }
       };
 
@@ -154,11 +162,24 @@ const Home: React.FC = () => {
           p={2}
           mb={4}
         />
-        {result && renderResults(result)}
-        <canvas
-          ref={canvasRef}
-          style={{ border: "1px solid black", marginTop: "20px" }}
-        ></canvas>
+        {loading ? (
+          <Spinner
+            size="xl"
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+          />
+        ) : (
+          result && renderResults(result)
+        )}
+        {result && (
+          <canvas
+            ref={canvasRef}
+            style={{ border: "1px solid black", marginTop: "20px" }}
+          ></canvas>
+        )}
+        <Divider />
         <Heading>Sample Images</Heading>
         <Text>
           If you have no x-rays and just want to test out the model, feel free
