@@ -37,7 +37,8 @@ const ImageUploader = ({ setLoading, setResult, setImageUrl }) => {
     <VStack align="center" spacing={4}>
       {" "}
       <Text fontSize="xl">
-        Instructions: Upload an x-ray to get your diagnosis.
+        Instructions: Upload an x-ray to get your diagnosis. If you like what
+        you see, feel free to email me at lancekwatanabe58@gmail.com
       </Text>
       <Input
         type="file"
