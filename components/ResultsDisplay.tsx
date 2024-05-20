@@ -28,7 +28,7 @@ const ResultsDisplay = ({ results }) => {
   return results.length > 0 ? (
     <VStack>{renderResults(results)}</VStack>
   ) : (
-    "No fractured detected"
+    <Text>No fractured detected</Text>
   );
 };
 

@@ -12,10 +12,10 @@ import React from "react"; // This import is necessary
 const SampleImagesDisplay = ({ images }) => {
   return (
     <VStack spacing={4}>
-      <Heading>Sample Images</Heading>
+      <Heading>Sample X-Rays</Heading>
       <Text>
-        If you have no x-rays and just want to test out the model, feel free to
-        use the images below.
+        If you have no x-rays images and just want to test out the model, feel
+        free to use the images below.
       </Text>
       <Grid templateColumns="repeat(5, 1fr)" gap={6}>
         {images.map((image, index) => (
