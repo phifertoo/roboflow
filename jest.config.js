@@ -8,8 +8,7 @@ module.exports = {
   transform: {
     "^.+\\.(ts|tsx|js|jsx)?$": "babel-jest", // This line ensures Babel is used
   },
-  // setupFiles: ["<rootDir>/config/polyfills.js"],
-  setupFilesAfterEnv: ["<rootDir>/config/jest/setup.js"],
+  setupFilesAfterEnv: ["./setupTests.js"],
   transformIgnorePatterns: ["<rootDir>/node_modules/"],
   testPathIgnorePatterns: ["<rootDir>/.next/", "<rootDir>/node_modules/"],
 };
