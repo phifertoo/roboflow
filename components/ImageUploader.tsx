@@ -37,6 +37,7 @@ const ImageUploader = ({ onImageLoad, setLoading, setResult }) => {
     <VStack>
       <Text>Instructions: Upload an x-ray to get your diagnosis.</Text>
       <Input
+        data-testid="file-input"
         type="file"
         onChange={handleImageChange}
         accept="image/*"
