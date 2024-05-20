@@ -1,19 +1,10 @@
 // jest.config.js
 module.exports = {
-  preset: "ts-jest",
-  testEnvironment: "jsdom",
-  moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/src/$1",
-  },
+  testEnvironment: "jest-environment-jsdom",
   transform: {
-    "^.+\\.(ts|tsx)$": [
-      "ts-jest",
-      {
-        tsconfig: "<rootDir>/tsconfig.jest.json", // Specify a custom tsconfig for Jest if needed
-      },
-    ],
-    "^.+\\.(js|jsx)$": "babel-jest", // Make sure to transform JS with Babel
+    // Transpile TypeScript and JS files
+    "^.+\\.(js|jsx|ts|tsx)$": "babel-jest",
   },
-  transformIgnorePatterns: ["<rootDir>/node_modules/"],
+  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
   testPathIgnorePatterns: ["<rootDir>/.next/", "<rootDir>/node_modules/"],
 };
